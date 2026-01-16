@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> Password Manager</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0b74de">
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header class="head">
+      <div class="logo">🔐</div>
+      <div>
+        <h1>Менеджер паролей</h1>
+      </div>
+      <button id="btnInstall" class="install hidden">Установить</button>
+    </header>
+
+    <section class="card">
+      <h2>Добавить / Редактировать</h2>
+      <form id="form" autocomplete="off">
+        <label>Логин (email или имя)
+          <input id="login" type="text" required />
+        </label>
+
+        <label>URL
+          <input id="url" type="url" placeholder="https://example.com" />
+        </label>
+
+        <label>Пароль
+          <input id="password" type="text" required autocomplete="new-password" />
+        </label>
+
+        <div class="row">
+          <div>
+            <label>Сложность
+              <select id="level">
+                <option value="easy">Лёгкий (only letters)</option>
+                <option value="medium" selected>Средний (letters + digits)</option>
+                <option value="hard">Сложный (letters + digits + symbols)</option>
+              </select>
+            </label>
+          </div>
+
+          <div>
+            <label>Длина
+              <input id="length" type="number" min="4" max="64" value="12" />
+            </label>
+          </div>
+
+          <div class="gen">
+            <button type="button" id="gen">Сгенерировать</button>
+            <button type="submit" id="save">Сохранить</button>
+            <button type="button" id="clear" class="ghost">Очистить</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Сохранённые записи</h2>
+      <div id="empty" class="muted">Нет сохранённых паролей</div>
+      <table id="table" class="tbl" aria-live="polite" style="display:none">
+        <thead>
+          <tr><th>Логин</th><th>URL</th><th>Пароль</th><th>Действия</th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </section>
+
+    
+  </main>
+</body>
+</html>
